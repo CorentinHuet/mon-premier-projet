@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Middleware\CheckTodo;
+use App\Http\Middleware\CheckContact;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TodoControleur;
+use App\Http\Controllers\ContactControleur;
 use App\Http\Controllers\PingPongControleur;
 use App\Http\Controllers\TestFlashController;
 
@@ -21,3 +23,6 @@ Route::get('/todo', [TodoControleur::class, 'listTodo']);
 Route::post('/addTodo', [TodoControleur::class, 'addTodo'])->middleware(CheckTodo::class);
 Route::get('/todo/terminer/{id}', [TodoControleur::class, 'markAsDone']);
 Route::get('/todo/supprimer/{id}', [TodoControleur::class, 'deleteTodo']);
+
+Route::get('/contact', [ContactControleur::class, 'contact']);
+Route::post('/sendMail', [ContactControleur::class, 'sendMail'])->middleware(CheckContact::class);

@@ -13,7 +13,9 @@
         @foreach($todos as $todo)
         <tr>
             <td>{{$todo->texte}}</td>
+            @if($todo->termine == 0)
             <td><a href="/todo/terminer/{{ $todo->id}}">Terminer</a></td>
+            @endif
             <td><a href="/todo/supprimer/{{ $todo->id}}">Supprimer</a></td>
         </tr>
         @endforeach
