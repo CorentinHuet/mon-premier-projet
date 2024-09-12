@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\CheckTodo;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TodoControleur;
 use App\Http\Controllers\PingPongControleur;
@@ -17,6 +18,6 @@ Route::get('/flash', [TestFlashController::class, 'main']);
 Route::post('/traitement', [TestFlashController::class, 'traitement']);
 
 Route::get('/todo', [TodoControleur::class, 'listTodo']);
-Route::post('/addTodo', [TodoControleur::class, 'addTodo']);
+Route::post('/addTodo', [TodoControleur::class, 'addTodo'])->middleware(CheckTodo::class);
 Route::get('/todo/terminer/{id}', [TodoControleur::class, 'markAsDone']);
 Route::get('/todo/supprimer/{id}', [TodoControleur::class, 'deleteTodo']);
