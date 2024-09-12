@@ -7,6 +7,7 @@ use App\Http\Controllers\TodoControleur;
 use App\Http\Controllers\ContactControleur;
 use App\Http\Controllers\PingPongControleur;
 use App\Http\Controllers\TestFlashController;
+use App\Http\Controllers\AuthentificationControleur;
 
 
 Route::get('/', function () {
@@ -26,3 +27,8 @@ Route::get('/todo/supprimer/{id}', [TodoControleur::class, 'deleteTodo']);
 
 Route::get('/contact', [ContactControleur::class, 'contact']);
 Route::post('/sendMail', [ContactControleur::class, 'sendMail'])->middleware(CheckContact::class);
+
+Route::get('/login', [AuthentificationControleur::class, 'login']);
+Route::post('/traitementLogin', [AuthentificationControleur::class, 'traitementLogin']);
+Route::get('/register', [AuthentificationControleur::class, 'register']);
+Route::post('/traitementRegister', [AuthentificationControleur::class, 'traitementRegister']);
