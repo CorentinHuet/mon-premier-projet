@@ -19,6 +19,7 @@ class AuthentificationControleur extends Controller
 
         if ($estValide) {
             $request->session()->put('user', $utilisateur);
+            return redirect("/todo");
         } else {
             return redirect('/login')->with('error', 'Identifiants incorrects');
         }
