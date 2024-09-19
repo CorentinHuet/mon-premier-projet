@@ -22,7 +22,7 @@ Route::get('/flash', [TestFlashController::class, 'main']);
 Route::post('/traitement', [TestFlashController::class, 'traitement']);
 
 Route::middleware('throttle:50,1')->get('/todo', [TodoControleur::class, 'listTodo'])->middleware(CheckAuth::class);
-Route::middleware('throttle:10,1')->get('/addTodo', [TodoControleur::class, 'addTodo'])->middleware([CheckAuth::class, CheckTodo::class]);
+Route::middleware('throttle:10,1')->post('/addTodo', [TodoControleur::class, 'addTodo'])->middleware([CheckAuth::class, CheckTodo::class]);
 Route::get('/todo/terminer/{id}', [TodoControleur::class, 'markAsDone'])->middleware(CheckAuth::class);
 Route::get('/todo/supprimer/{id}', [TodoControleur::class, 'deleteTodo'])->middleware(CheckAuth::class);
 
