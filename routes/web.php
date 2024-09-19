@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\CheckAuth;
 use App\Http\Middleware\CheckTodo;
 use App\Http\Middleware\CheckContact;
 use Illuminate\Support\Facades\Route;
@@ -20,8 +21,9 @@ Route::get('/pong', [PingPongControleur::class, 'pong']);
 Route::get('/flash', [TestFlashController::class, 'main']);
 Route::post('/traitement', [TestFlashController::class, 'traitement']);
 
-Route::middleware('throttle:50,1')->get('/todo', [TodoControleur::class, 'listTodo']);
+//Route::middleware('throttle:50,1')->get('/todo', [TodoControleur::class, 'listTodo'])->middleware(CheckAuth::class);
 Route::middleware('throttle:10,1')->get('/addTodo', [TodoControleur::class, 'addTodo'])->middleware(CheckTodo::class);
+Route::get('/todo', [TodoControleur::class, 'listTodo'])->middleware(CheckAuth::class);
 Route::get('/todo/terminer/{id}', [TodoControleur::class, 'markAsDone']);
 Route::get('/todo/supprimer/{id}', [TodoControleur::class, 'deleteTodo']);
 

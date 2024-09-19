@@ -17,9 +17,7 @@ class CheckContact
     {
         if($request->mail == '' or $request->titre == '' or $request->texte == '') {
             return redirect()->back()->with('error', 'Votre demande n\'a pas été prise en compte.');
-        } else {
-            return redirect()->back()->with('success', 'Votre demande a bien été prise en compte.');
-        }
+        } 
 
         return $next($request);
     }
